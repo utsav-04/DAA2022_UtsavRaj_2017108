@@ -1,29 +1,84 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-int main() {
-    int T;
-    cin >> T;
-    for (int i = 0; i < T; i++) {
-        int n;
-        cin >> n;
-        int A[1000];
-        for (int j = 0; j < n; j++)
-            cin >> A[j];
-        int flag = 0, comp = 0, key, mid, lower = 0, greater = n - 1
-        cin >> key;
-        while (greater >= lower) {
-            comp++;
-            mid = lower + (greater - lower) / 2;
-            if (A[mid] == key) {
-                cout << "Present ";
-                flag++; break;
-            }
-            else if (key > A[mid])
-                lower = mid + 1;
-            else
-                greater = mid - 1;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int c=0,r=0;
+        int n,f;
+        cin>>n;
+        int a[n];
+        for(int i=0; i<n; i++)
+        {
+            cin>>a[i];
         }
-        if (flag == 0)  cout << "Not Present ";
-        cout << comp << endl;
+        cin>>f;
+        cout<<endl;
+        int s=0;
+        s=n/2;
+
+        if(f==a[s])
+        {
+            cout<<"Present"<<endl;
+            cout<<"No of comparisons: "<<1<<endl;
+        }
+        else if(f<a[s])
+        {
+            for(int i=0; i<s; i++)
+            {
+                if(a[i]!=f && f<a[i])
+                {
+                    c++;
+                    cout<<"Not Present"<<endl;
+                    cout<<"No. of comparisons: "<<c+1<<endl;
+                    break;
+                }
+                else if(a[i]!=f)
+                {
+                    c++;
+                }
+                else if(a[i]==f){
+                    cout<<"Present"<<endl;
+                    cout<<"No of comparisons: "<<c+2<<endl;
+                    break;
+                }
+                if(c==s)
+                {
+                    cout<<"Not Present"<<endl;
+                    cout<<"No of comparisons: "<<c+1<<endl;
+                }
+            }
+        }
+        else
+        {
+            for(int i=s+1; i<n; i++)
+            {
+                if(a[i]!=f && f<a[i])
+                {
+                    r++;
+                    cout<<"Not Present"<<endl;
+                    cout<<"No. of comparisons: "<<r+1<<endl;
+                    break;
+                }
+                else if(a[i]!=f)
+                {
+                    r++;
+                }
+                else if(a[i]==f){
+                    cout<<"Present"<<endl;
+                    cout<<"No of comparisons: "<<r+2<<endl;
+                    break;
+                }
+                if(r==s)
+                {
+                    cout<<"Not Present"<<endl;
+                    cout<<"No of comparisons: "<<r+1<<endl;
+                }
+        }
+        }
     }
+    return 0;
 }
